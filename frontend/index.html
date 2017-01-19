@@ -1,16 +1,127 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>React [RU] Tutorial</title>
-  <link rel="stylesheet" href="css/app.css">
+	<meta charset="UTF-8">
+	<title>Crypto Weddings</title>
+
+	<!-- Bootstrap & Snippet plugin core CSS -->
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	<!-- Custom styles for this template -->
+	<link href="css/crypto_test.css" rel="stylesheet">
+
 </head>
 <body>
 
-  <div id="root"></div>
-  <script src="js/react/react.js"></script>
-  <script src="js/react/react-dom.js"></script>
-  <script src="js/react/browser.min.js"></script>
-  <script type="text/babel" src="js/app.js"></script>
+  <!-- Start the navbar -->
+  <div class="navbar-wrapper">
+    <div class="container">
+    <div class="navwrapper">
+      <div class="navbar navbar-inverse navbar-static-top">
+        <div class="container">
+          <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            </button>
+          </div>
+          <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+              <li class="menuItem active"><a href="#secintro">What is it</a></li>
+							<li class="menuItem"><a href="#sechowit">How it works</a></li>
+              <li class="menuItem"><a href="#secmulti">Create wallet</a></li>
+              <li class="menuItem"><a href="#secwed">Weddings notes</a></li>
+              <li class="menuItem"><a href="#seccontact">Contact</a></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    </div>
+  </div> <!-- End navbar -->
+
+  <div class="logo"></div>
+
+	<!-- Start the content -->
+	<div id="contents">
+
+	  <div id="secintro" class="row featurette">
+			<div class="col-md-7">
+				<h2 class="featurette-heading">What is it</h2>
+				<p class="lead">Cryptowedding was created for the most romantic and the most modern people.</p>
+				<p class="lead">Do you have a BTC wallet? If you do, than you shoud know about blockchain and cryptocurrency. This service uses two BTC wallets to create the one wallet with two signatures that is, with two owners. Of course, these owners are the owners of the original wallets.</p>
+				<p class="lead">In addition to creation of the multisignature wallet, the CryptoWedding allows you to attach a text message. This can be used to miraculously make the proposal to your second half by sending a link to the transaction with your text. You can come up with myself how to use it.</p>
+				<p class="lead">If you don't have a BTC wallet or just want to know about blockchain tecnology you can visit <a href="#">this section</a>.</p>
+			</div>
+			<div class="col-md-5">
+			</div>
+		</div>
+
+		<div id="sechowit" class="row featurette">
+			<div class="col-md-5">
+			</div>
+			<div class="col-md-7">
+				<h2 class="featurette-heading">How it works</h2>
+				<p class="lead">Consider Alice and Bob both have their wallets. So Alice knows her private key and Bob knows his one. But they also knows both their public keys. Imagine that Alice and Bob decide to to use some part of their money for some common goals. Multisig wallet used in Bitcoin network is the solution of the problem.</p>
+				<p class="lead">To create the wallet with two owners we need just two public keys. So Alice and Bob create their multisig. After that it has its own adress and balance, but outgoing transactions to be valid require both private keys.</p>
+				<p class="lead">By this service you can create multisig wallet for two owners. Just enter the public keys in the form below. You can add a text if you want to save your message in the history of the Bitcoin Blockchain. After you did that, you see the target adress. Send BTC amount as much as you want. Your multisig wallet is created! Its starting amount equals amount you sent minus network fee.</p>
+			</div>
+		</div>
+
+	  <div id="secmulti" class="row featurette">
+			<div class="col-md-7">
+	    	<h2 class="featurette-heading">Create multisignature wallet</h2>
+				<p class="lead">Cryptowedding was created for the most romantic and the most modern people.</p>
+				<p class="lead">Cryptowedding was created for the most romantic and the most modern people.</p>
+			</div>
+			<div class="col-md-5">
+			</div>
+		</div>
+
+	  <div id="secwed" class="row featurette">
+			<div class="col-md-5">
+			</div>
+	    <h2 class="featurette-heading">Weddings Table</h2>
+			<p class="lead">Cryptowedding was created for the most romantic and the most modern people.</p>
+			<p class="lead">Cryptowedding was created for the most romantic and the most modern people.</p>
+	  </div>
+
+	  <div id="seccontact", class="row featurette">
+	    <h2 class="featurette-heading">Contact</h2>
+	    <p>One of the goals of this project is blockchane technology popularisation. If you have any questions or some ideas to improve the service please contact us by email crypto@crypto.crypto</p>
+	  </div>
+
+	</div>	<!-- End the content -->
+
+  <script src="js/jquery.js"></script>
+	<script src="js/bootstrap.min.js"></script>
+
+	<!-- ### IMPORTANT ### stickUp javascript file -->
+	<!-- ######################################### -->
+  <script src="js/stickUp.min.js"></script>
+
+  <script type="text/javascript">
+    //initiating jQuery
+    jQuery(function($) {
+      $(document).ready( function() {
+        //enabling stickUp on the '.navbar-wrapper' class
+        $('.navbar-wrapper').stickUp({
+                      parts: {
+                        0:'secintro',
+												1:'sechowit',
+                        2:'secmulti',
+                        3:'secwed',
+                        4:'seccontact',
+                      },
+                      itemClass: 'menuItem',
+                      itemHover: 'active',
+											topMargin: 'auto'
+                    });
+      });
+    });
+  </script>
 
 </body>
 </html>
