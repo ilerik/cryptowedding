@@ -16,12 +16,60 @@ margin-top: 20px;
 
 /* Special class on .container surrounding .navbar, used for positioning it into place. */
 .navbar-wrapper {
-  margin-top:20px;
   position: relative;
   z-index: 15;
 }
+.navwrapper {
+  width: 100%;
+}
 
-.isStuck{
+.navbar-logo {
+float: left;
+height: 50px;
+padding: 15px 15px;
+font-size: 24px;
+line-height: 20px;
+font-family: "Great Vibes", cursive;
+color: #fff;
+}
+
+.navbar.navbar-inverse.navbar-static-top {
+  background: #89bdd3;
+  border-width: 0 0 2px;
+  /* Choose second color for navbar*/
+  /*border-color: #0074D9;*/
+  border-color: #002080;
+
+}
+.navbar.navbar-inverse.navbar-static-top a{
+  color:#fff;
+}
+.navbar.navbar-inverse.navbar-static-top a:hover{
+  color:#0074D9;
+}
+.navbar-inverse .navbar-nav>.active>a, .navbar-inverse .navbar-nav>.active>a:focus{
+  background:#002080;
+}
+.navbar-inverse .navbar-nav>.active>a:hover {
+  background:#002080;
+  color:#fff;
+}
+.navbar-inverse .navbar-toggle {
+  background: #002080;
+  border-color: #fff;
+}
+.navbar-inverse .navbar-toggle:hover {
+  background: #0074D9;
+}
+.navbar-inverse .navbar-toggle:focus {
+  background: #002080;
+  border-color: #002080;
+}
+.navbar-inverse .navbar-collapse {
+  border-top: 1px solid #002080;
+}
+
+.isStuck {
     left:0px;
     width:100%;
 }
@@ -31,6 +79,7 @@ margin-top: 20px;
   padding: 0 80px;
   margin-right:0px;
   margin-left:0px;
+  text-align: justify;
 }
 
 .row.featurette:nth-child(even){
@@ -46,18 +95,26 @@ margin-top: 20px;
   margin-top: 80px;
 }
 
+
+
 /* RESPONSIVE CSS
 -------------------------------------------------- */
 
 @media (min-width: 768px) {
+  /* The width of navbar content */
+  .container {
+      width: 760px;
+  }
   /* Navbar positioning foo */
-  .navbar-wrapper {
+  .navbar-wrapper {/* TO DO DELETE */
   }
   /* The navbar becomes detached from the top, so we round the corners */
-  .navbar-wrapper .navbar {
-    border-radius: 4px;
+  .navbar-wrapper .navbar {/* TO DO DELETE */
+    /*border-radius: 4px;*/
   }
-
+  .navbar-inverse .navbar-collapse {
+    border-top: none;
+  }
   .featurette-heading {
     font-size: 50px;
   }
