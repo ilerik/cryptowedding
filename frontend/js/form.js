@@ -90,7 +90,7 @@ function validate(target){
 				break;
     	case "textarea":
         break;
-      case "btc-adress":
+      case "btc-address":
         error += setRow(validateAdress(val), Parent);
         break;
 			case "email":

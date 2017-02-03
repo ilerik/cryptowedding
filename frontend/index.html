@@ -80,8 +80,8 @@
 			    <div class="row">
 			    	<div class="col-lg-10">
 
-							<form>	<!-- START THE FORM -->
-								<div id="contact-form" class="form-container" data-form-container>
+							<form id="multisig-form" >	<!-- START THE FORM -->
+								<div class="form-container" data-form-container>
 									<div class="row">
 										<div class="form-title"><span>Fill the form</span>
 										</div>
@@ -91,14 +91,14 @@
 											<span class="req-input">
 												<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input first BTC adress.">
 												</span>
-												<input type="btc-adress" maxlength="40" placeholder="First BTC adress">
+												<input type="btc-address" maxlength="40" placeholder="First BTC adress">
 											</span>
 										</div>
 										<div class="row">
 											<span class="req-input">
 												<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input second BTC adress.">
 												</span>
-												<input type="btc-adress" maxlength="40" placeholder="Second BTC adress">
+												<input type="btc-address" maxlength="40" placeholder="Second BTC adress">
 											</span>
 										</div>
 										<div class="row">
@@ -145,6 +145,7 @@
 	<!-- ######################################### -->
   <script src="js/stickUp.js"></script>
 	<script src="js/form.js"></script>
+	<script src="js/submit.js"></script>
   <script type="text/javascript">
     //initiating jQuery
     jQuery(function($) {
