@@ -9,3 +9,6 @@ CTestTestfile.cmake
 
 # Rust related files
 target/
+
+# Node.js
+frontend/node_modules

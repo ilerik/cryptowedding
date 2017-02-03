@@ -54,6 +54,7 @@ impl Service for WeddingService {
 
     fn call(&self, _request: Request) -> Self::Future {
         // Deserialize request and get addresses of participants
+        println!("{:?}", _request);
         //let deserialized_request: WeddingRequest = serde_json::from_str(&_request.data).unwrap();
         let pk_alice: Address =
         FromBase58::from_base58check("2N3zXjbwdTcPsJiy8sUK9FhWJhqQCxA8Jjr").unwrap();
