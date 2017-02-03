@@ -1,6 +1,6 @@
 $(function(){
 
-    $('[data-toggle="tooltip"]').tooltip();
+  $('[data-toggle="tooltip"]').tooltip();
 
 	$(".req-input input, .req-input textarea").on("click input", function(){
 		validate($(this).closest("[data-form-container]"));
@@ -32,23 +32,6 @@ $(function(){
 		}
 	});
 
-	$(".create-account").on('click', function(){
-		if($(".confirm-password").is(":visible")){
-			$(this).text("Create an Account");
-			$(this).closest("[data-form-container]").find(".submit-form").text("Login");
-			$(".confirm-password").parent().slideUp(function(){
-				validate($(this).closest("[data-form-container]"));
-			});
-		} else {
-			$(this).closest("[data-form-container]").find(".submit-form").text("Create Account");
-			$(this).text("Already Have an Account");
-			$(".confirm-password").parent().slideDown(function(){
-				validate($(this).closest("[data-form-container]"));
-			});
-		}
-
-	});
-
 	$("[data-toggle='tooltip']").on("mouseover", function(){
 		console.log($(this).parent().attr("class"));
 		if($(this).parent().hasClass("invalid")){
@@ -64,13 +47,14 @@ $(function(){
 
 function resetForm(target){
 	var container = target;
-	container.find(".valid, .invalid").removeClass("valid invalid")
+	container.find(".valid, .invalid").removeClass("valid invalid");
 	container.css("background", "");
 	container.css("color", "");
 }
 
 function setRow(valid, Parent){
 	var error = 0;
+
 	if(valid){
 		Parent.addClass("valid");
 		Parent.removeClass("invalid");
@@ -84,13 +68,8 @@ function setRow(valid, Parent){
 
 function validate(target){
 	var error = 0;
-	target.find(".req-input input, .req-input textarea, .req-input select").each(function(){
+	target.find(".req-input input, .req-input textarea").each(function(){
 		var type = $(this).attr("type");
-
-		if($(this).parent().hasClass("confirm-password") && type == "password"){
-			var type = "confirm-password";
-		}
-
 		var Parent = $(this).parent();
 		var val = $(this).val();
 
@@ -103,13 +82,17 @@ function validate(target){
 				error += setRow(initialPassword  == val && initialPassword.length > 0, Parent);
 				break;
 			case "password":
-			case "textarea":
 			case "text":
 				var minLength = $(this).data("min-length");
 				if(typeof minLength == "undefined")
 					minLength = 0;
 				error += setRow(val.length >= minLength, Parent);
 				break;
+    	case "textarea":
+        break;
+      case "btc-address":
+        error += setRow(validateAdress(val), Parent);
+        break;
 			case "email":
 				error += setRow(validateEmail(val), Parent);
 				break;
@@ -121,19 +104,12 @@ function validate(target){
 
 	var submitForm = target.find(".submit-form");
 	var formContainer = target;
-	var formTitle = target.find(".form-title");
 	if(error == 0){
-		formContainer.css("background", "#C8E6C9");
-		formContainer.css("color", "#2E7D32");
-		submitForm.addClass("valid");
 		submitForm.removeClass("invalid");
-        return true;
+    return true;
 	} else {
-		formContainer.css("background", "#FFCDD2");
-		formContainer.css("color", "#C62828");
 		submitForm.addClass("invalid");
-		submitForm.removeClass("valid");
-        return false;
+    return false;
 	}
 }
 function phonenumber(inputtxt) {
@@ -151,4 +127,18 @@ function phonenumber(inputtxt) {
 function validateEmail(email) {
     var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(email);
+}
+
+// Check that public key is valid
+function validateAdress(pkey) {
+  // check size of adress
+  if ((pkey.length < 26) || (pkey.length > 35)) {
+    return false;
+  }
+  // check first letters
+  if (pkey[0] != '1') {
+    return false;
+  }
+  // check the prohibited letters
+  return !(/[^\w]|[_IiO0]/g).test(pkey);
 }

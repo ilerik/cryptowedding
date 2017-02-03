@@ -79,8 +79,9 @@
 				<div class="container">
 			    <div class="row">
 			    	<div class="col-lg-10">
-							<form>
-								<div id="contact-form" class="form-container" data-form-container>
+
+							<form id="multisig-form" >	<!-- START THE FORM -->
+								<div class="form-container" data-form-container>
 									<div class="row">
 										<div class="form-title"><span>Fill the form</span>
 										</div>
@@ -90,30 +91,32 @@
 											<span class="req-input">
 												<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input first BTC adress.">
 												</span>
-												<input type="text" data-min-length="2" placeholder="First BTC adress">
+												<input type="btc-address" maxlength="40" placeholder="First BTC adress">
 											</span>
 										</div>
 										<div class="row">
 											<span class="req-input">
 												<span class="input-status" data-toggle="tooltip" data-placement="top" title="Input second BTC adress.">
 												</span>
-												<input type="text" data-min-length="2" placeholder="Second BTC adress">
+												<input type="btc-address" maxlength="40" placeholder="Second BTC adress">
 											</span>
 										</div>
 										<div class="row">
 											<span class="req-input message-box">
 												<span class="input-status" data-toggle="tooltip" data-placement="top" title="I can atach a text message (300 ltrs)."> </span>
-												<textarea type="text" maxlength="200" placeholder="Message"></textarea>
+												<textarea type="textarea" maxlength="300" placeholder="Message"></textarea>
 										</div>
 										<div class="row submit-row">
-											<button type="button" class="btn btn-block submit-form">Submit</button>
+											<button type="button" class="btn btn-block submit-form invalid">Create Multysig</button>
 										</div>
 									</div>
 								</div>
-							</form>
+							</form>	<!-- END OF THE FORM -->
+
 						</div>
 					</div>
 				</div>	<!-- End of the main form -->
+
 
 			</div>
 			<div class="col-md-5">
@@ -142,6 +145,7 @@
 	<!-- ######################################### -->
   <script src="js/stickUp.js"></script>
 	<script src="js/form.js"></script>
+	<script src="js/submit.js"></script>
   <script type="text/javascript">
     //initiating jQuery
     jQuery(function($) {
