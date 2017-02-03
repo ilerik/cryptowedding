@@ -38,10 +38,10 @@ pub struct WeddingRequest {
     public_message : String
 }
 
-//#[derive(Serialize, Deserialize, Debug)]
+#[derive(Serialize, Deserialize, Debug)]
 pub struct WeddingEvent {
-    priest_pk : String,
-    timestamp : time::Tm,
+    priest_address : String,
+    //timestamp : time::Tm,
 }
 
 struct WeddingService;
@@ -63,29 +63,35 @@ impl Service for WeddingService {
         let wedding_request = WeddingRequest{
             alice_pk : pk_alice.to_base58check(),
             bob_pk : pk_bob.to_base58check(),
-            public_message : "MyFirstWedding".to_string()
+            public_message : "MyFirstOne".to_string()
          };
 
-        // Create new wedding event
-        // Hardcode addresses of priest for now
+        // Create new wedding event and priest credentials
+        // generate keypair from secp256k1 elliptic curve
+        let secp = Secp256k1::with_caps(ContextFlag::SignOnly);
+        let network = Network::Bitcoin;
         let compressed = false;
-        let pk_priest = "1Er1kCVPzyXxhogYr7biLSPQ9ZC4nL1gNw".to_string();
-        let sk_priest: Privkey =
-        FromBase58::from_base58check("5KMDBYFxRfi4MzgLDyA2wcq3hzqjnPmWw14gve5bJ77e3KLuUHe").unwrap();
-        let wedding = WeddingEvent{ priest_pk : pk_priest, timestamp : time::now_utc() };
+        let sk = SecretKey::new(&secp, &mut thread_rng());
+        let pk = PublicKey::from_secret_key(&secp, &sk).expect("Failed to create public key");
+
+        // convert public key to Bitcoin address and private key to base58
+        let address = Address::from_key(network, &pk, compressed);
+        let privkey = Privkey::from_key(network, sk, compressed);
+        let wedding = WeddingEvent{
+            priest_address : address.to_base58check(),
+            //timestamp : time::now_utc()
+        };
 
         // Prepare response
         let mut resp = Response::new();
-        //let serialized_response = serde_json::to_string(&wedding).unwrap();
-        let serialized_response = r#"{ priest_address:"1Er1kCVPzyXxhogYr7biLSPQ9ZC4nL1gNw", expiration_timestamp:"0" }"#.to_string();
+        let serialized_response = serde_json::to_string(&wedding).unwrap();
+        //let serialized_response = r#"{ priest_address:"1Er1kCVPzyXxhogYr7biLSPQ9ZC4nL1gNw", expiration_timestamp:"0" }"#.to_string();
         resp.body(&serialized_response);
         future::ok(resp)
     }
 }
 
 fn main() {
-    //Get latest block from bitcoind service
-
     //Start HTTP-service
     drop(env_logger::init());
     let addr = "0.0.0.0:3000".parse().unwrap();
