@@ -1,0 +1,22 @@
+[package]
+name = "cryptopriest"
+version = "0.1.1"
+authors = ["ilerik <erik.lite@gmail.com>"]
+
+[dependencies]
+bitcoin="0.9"
+secp256k1 = "0.6"
+rand="*"
+time="*"
+futures = "0.1"
+env_logger = "0.3.5"
+tokio-proto = { git = "https://github.com/tokio-rs/tokio-proto" }
+tokio-service = { git = "https://github.com/tokio-rs/tokio-service" }
+tokio-minihttp = { git = "https://github.com/tokio-rs/tokio-minihttp" }
+serde = "0.8"
+serde_derive = "0.8"
+serde_json = "0.8"  # just for the example, not required in general
+
+[dependencies.hyper]
+version = "0.9"
+default-features = false
