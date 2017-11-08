@@ -1,7 +1,7 @@
 pragma solidity ^0.4.13;
 
 /**
-    This contract represents a two-of-two multisig wallet with some usefull options
+    This contract represents a two-of-two multisig wallet with some useful options
 **/
 contract Multisig {
     // Ethereum addresses of multisig owners
@@ -25,7 +25,7 @@ contract Multisig {
     uint256 public withdrawal1;
     uint256 public withdrawal2;
 
-    // Active claims for the case when partners decide to end cooperation by this contract
+    // Active claims for the case when partners decide to end cooperation using this contract
     struct Claim {
         bool active;
         uint256 amount;
@@ -214,7 +214,7 @@ contract Multisig {
     }
     
     // Any owner can justify their climes if it has 2 witness approves
-    // If witness wants to approve the claim he or she need to set claimNumber  
+    // If witness wants to approve the claim he or she needs to set `claimNumber`  
     function JustifyClaimWithWitness(uint8 claimNumber) onlyParticipants {
         // First witness case
         if (msg.sender == witness1) {
@@ -262,10 +262,5 @@ contract Multisig {
         }
         require(this.balance == 0);
         suicide(msg.sender);
-    }
-
-    // Mist reset function for DEBUG mode
-    function resetMistCallLoad() payable {
-        require(msg.value == 0);
     }
 }
